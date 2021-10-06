@@ -1,4 +1,4 @@
-FROM ubuntu:hirsute
+FROM ubuntu:latest
 
 LABEL maintainer="made by ibook86"
 
