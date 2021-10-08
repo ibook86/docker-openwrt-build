@@ -3,6 +3,9 @@ FROM ubuntu:latest
 
 LABEL maintainer="made by ibook86"
 
+ENV TZ="Asia/Shanghai"
+RUN ln -fs /usr/share/zoneinfo/$TZ /etc/localtime
+
 WORKDIR /home/openwrt
 
 ENV BUILD_PATH="/home/openwrt"
@@ -13,7 +16,8 @@ RUN apt-get update -qq && apt-get install -qq -y ack antlr3 asciidoc autoconf au
       libltdl-dev libmpc-dev libmpfr-dev libncurses5-dev libncurses5-dev libreadline-dev libssl-dev libtool libz-dev \
       lrzsz mkisofs msmtp nano ninja-build p7zip p7zip-full patch pkgconf python2.7 python3 python3-pip python3-ply \
       python-docutils qemu-utils re2c rsync scons squashfs-tools subversion swig texinfo uglifyjs upx-ucl unzip vim \
-      wget xmlto xxd zlib1g-dev && apt-get -qq autoremove --purge && apt-get -qq clean
+      wget xmlto xxd zlib1g-dev tzdata && apt-get -qq autoremove --purge && apt-get -qq clean && \
+    dpkg-reconfigure -f noninteractive tzdata
 
 RUN git clone -b "openwrt-21.02" --single-branch https://github.com/immortalwrt/immortalwrt && cd $BUILD_PATH/immortalwrt && \
     ./scripts/feeds update -a && ./scripts/feeds install -a && \
