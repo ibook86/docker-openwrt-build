@@ -1,4 +1,5 @@
 FROM ubuntu:latest
+#FROM ubuntu:bionic
 
 LABEL maintainer="made by ibook86"
 
@@ -6,7 +7,7 @@ WORKDIR /home/openwrt
 
 ENV BUILD_PATH="/home/openwrt"
 
-RUN apt-get install -qq -y ack antlr3 asciidoc autoconf automake autopoint binutils bison build-essential \
+RUN apt-get update -qq && apt-get install -qq -y ack antlr3 asciidoc autoconf automake autopoint binutils bison build-essential \
       bzip2 ccache cmake cpio curl device-tree-compiler ecj fastjar flex gawk gettext gcc-multilib g++-multilib \
       git git-core gperf haveged help2man intltool lib32gcc1 libc6-dev-i386 libelf-dev libglib2.0-dev libgmp3-dev \
       libltdl-dev libmpc-dev libmpfr-dev libncurses5-dev libncurses5-dev libreadline-dev libssl-dev libtool libz-dev \
