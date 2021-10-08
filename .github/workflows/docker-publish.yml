@@ -31,6 +31,13 @@ jobs:
       packages: write
 
     steps:
+      - name: rm
+        run: |
+          docker rmi $(docker images -q)
+          sudo apt-get -qq remove --purge azure-cli ghc zulu* hhvm llvm* firefox google* \
+          dotnet* powershell mysql* php* mssql-tools msodbcsql17 android*          
+          sudo apt-get -qq autoremove --purge                                                       sudo apt-get -qq clean
+          sudo rm -rf /usr/share/dotnet /etc/mysql /etc/php /usr/local/lib/android
       - name: Checkout repository
         uses: actions/checkout@v2
 
